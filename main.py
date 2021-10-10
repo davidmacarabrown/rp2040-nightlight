@@ -27,15 +27,8 @@ def setDuty(duty):
     led_output2.duty_u16(int(duty))
 
 while True:
-    setDuty(0)
     
     if input_sens.read_u16() < input_sensitivity:
-        active = True
-    else:
-        active = False
-        time.sleep(sleep_time)
-    
-    if active:
         while duty < max_duty:
             duty = duty * 1.01
             setDuty(duty)
@@ -47,3 +40,6 @@ while True:
             duty = duty * 0.99
             setDuty(duty)
             time.sleep(0.01)
+    else:
+        setDuty(0)
+        time.sleep(sleep_time)
